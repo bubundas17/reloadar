@@ -37,6 +37,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
+        android:layout_marginEnd="8dp"
         android:background="?android:attr/colorSecondary"
         android:text="Load"
         android:textSize="24sp"

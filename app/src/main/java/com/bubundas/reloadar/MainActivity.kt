@@ -21,15 +21,23 @@ import android.webkit.WebViewClient
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         webView.loadUrl("https://blockchain.info/address/3M1n7K1yMa2zwGobtwtj6ekbd57nM8g4Nx")
 //        webView.loadUrl("https://google.com")
         webView.settings.javaScriptEnabled = true
-        webView.setWebViewClient(WebViewClient())
+        webView.webViewClient = WebViewClient()
         val ha = Handler()
-        ha.postDelayed({ webView.reload() }, 10000)
+        ha.postDelayed(object : Runnable {
+
+            override fun run() {
+                //call function
+                webView.reload()
+                ha.postDelayed(this, 5000)
+            }
+        }, 5000)
 
         loadBtn.setOnClickListener {
             if (textView.text.toString() == ""){
